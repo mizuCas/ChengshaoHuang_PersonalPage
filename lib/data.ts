@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
+import { generateId, generateSlug } from './utils'
 
 // 数据文件路径
 const DATA_DIR = path.join(process.cwd(), 'data')
@@ -209,16 +210,3 @@ export async function deleteProject(id: string): Promise<boolean> {
   return true
 }
 
-// 生成唯一 ID
-function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2)
-}
-
-// 生成 slug
-export function generateSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}

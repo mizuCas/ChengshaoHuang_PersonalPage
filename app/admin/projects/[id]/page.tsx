@@ -5,7 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Save, Eye } from 'lucide-react'
 import RichTextEditor from '@/components/RichTextEditor'
-import { generateSlug } from '@/lib/data'
+import { generateSlug } from '@/lib/utils'
 
 interface Project {
   id: string

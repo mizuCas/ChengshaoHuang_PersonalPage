@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Github, Mail, Linkedin } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Menu, X, Github, Mail, Plus } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const router = useRouter()
 
   const navigation = [
     { name: '首页', href: '/' },
@@ -13,6 +15,18 @@ export default function Header() {
     { name: '行业观察', href: '/blog' },
     { name: '兴趣爱好', href: '/hobbies' },
   ]
+
+  const handleCreatePost = () => {
+    // 检查是否已登录
+    const token = localStorage.getItem('admin_token')
+    if (!token) {
+      // 如果未登录，跳转到登录页面
+      router.push('/admin/login')
+    } else {
+      // 如果已登录，跳转到新建文章页面
+      router.push('/admin/posts/new')
+    }
+  }
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -36,8 +50,15 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Social Links */}
+          {/* Social Links & Create Post Button */}
           <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={handleCreatePost}
+              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-200"
+              title="写文章"
+            >
+              <Plus size={20} />
+            </button>
             <a
               href="https://github.com/mizuCas"
               target="_blank"
@@ -78,6 +99,16 @@ export default function Header() {
                 </Link>
               ))}
               <div className="flex items-center space-x-4 pt-4">
+                <button
+                  onClick={() => {
+                    handleCreatePost()
+                    setIsMenuOpen(false)
+                  }}
+                  className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-200"
+                  title="写文章"
+                >
+                  <Plus size={20} />
+                </button>
                 <a
                   href="https://github.com/mizuCas"
                   target="_blank"
