@@ -17,8 +17,8 @@ interface Project {
   createdAt: string
 }
 
-export default function ProjectsPage() {
-  const allProjectsData = getProjects()
+export default async function ProjectsPage() {
+  const allProjectsData = await getProjects()
   const allProjects = allProjectsData.map(project => ({
     id: project.id,
     name: project.title,

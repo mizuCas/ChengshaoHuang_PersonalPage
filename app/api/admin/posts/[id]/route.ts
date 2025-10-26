@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const post = getPostById(params.id)
+    const post = await getPostById(params.id)
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
@@ -22,7 +22,7 @@ export async function PUT(
 ) {
   try {
     const body = await request.json()
-    const post = updatePost(params.id, body)
+    const post = await updatePost(params.id, body)
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
@@ -37,7 +37,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const success = deletePost(params.id)
+    const success = await deletePost(params.id)
     if (!success) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }

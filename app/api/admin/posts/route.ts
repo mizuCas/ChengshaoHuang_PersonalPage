@@ -3,7 +3,7 @@ import { getPosts, savePosts, createPost, updatePost, deletePost } from '@/lib/d
 
 export async function GET() {
   try {
-    const posts = getPosts()
+    const posts = await getPosts()
     return NextResponse.json(posts)
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 })
@@ -13,7 +13,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const post = createPost(body)
+    const post = await createPost(body)
     return NextResponse.json(post, { status: 201 })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create post' }, { status: 500 })

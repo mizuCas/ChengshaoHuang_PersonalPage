@@ -19,9 +19,10 @@ interface BlogPost {
 
 const categories = ['全部', '技术趋势', '产品思考', '设计思考', '技术分享', '架构设计', '工具分享']
 
-export default function BlogPage() {
-  const allPosts = getPosts().filter(post => post.status === 'published')
-  const blogPosts = allPosts.map(post => ({
+export default async function BlogPage() {
+  const allPosts = await getPosts()
+  const posts = allPosts.filter(post => post.status === 'published')
+  const blogPosts = posts.map(post => ({
     id: post.id,
     title: post.title,
     excerpt: post.excerpt,
