@@ -94,6 +94,5 @@ MIT License
 
 ## 联系方式
 
-- 邮箱: your-email@example.com
-- GitHub: github.com/yourusername
-- LinkedIn: linkedin.com/in/yourprofile
+- 邮箱: cslinktheworld@gmail.com
+- GitHub: github.com/mizuCas

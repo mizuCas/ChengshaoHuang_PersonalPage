@@ -39,7 +39,7 @@ export default function Header() {
           {/* Social Links */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="https://github.com"
+              href="https://github.com/mizuCas"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
@@ -47,18 +47,10 @@ export default function Header() {
               <Github size={20} />
             </a>
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:cslinktheworld@gmail.com"
               className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
             >
               <Mail size={20} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
-            >
-              <Linkedin size={20} />
             </a>
           </div>
 
@@ -87,7 +79,7 @@ export default function Header() {
               ))}
               <div className="flex items-center space-x-4 pt-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/mizuCas"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
@@ -95,18 +87,10 @@ export default function Header() {
                   <Github size={20} />
                 </a>
                 <a
-                  href="mailto:your-email@example.com"
+                  href="mailto:cslinktheworld@gmail.com"
                   className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
                 >
                   <Mail size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                >
-                  <Linkedin size={20} />
                 </a>
               </div>
             </nav>

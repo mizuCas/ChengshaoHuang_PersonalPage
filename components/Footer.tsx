@@ -37,9 +37,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">联系方式</h3>
             <div className="space-y-2">
-              <p className="text-gray-300">邮箱: your-email@example.com</p>
-              <p className="text-gray-300">GitHub: github.com/yourusername</p>
-              <p className="text-gray-300">LinkedIn: linkedin.com/in/yourprofile</p>
+              <p className="text-gray-300">邮箱: cslinktheworld@gmail.com</p>
+              <p className="text-gray-300">GitHub: github.com/mizuCas</p>
             </div>
           </div>
         </div>
