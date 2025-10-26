@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale'
+import { getPosts } from '@/lib/data'
 
 interface BlogPost {
   id: string
@@ -16,84 +17,22 @@ interface BlogPost {
   featured: boolean
 }
 
-const blogPosts: BlogPost[] = [
-  {
-    id: '1',
-    title: '2024年Web开发趋势分析',
-    excerpt: '探讨今年最值得关注的Web开发技术趋势，包括AI集成、边缘计算和新的框架特性。',
-    content: '',
-    publishedAt: '2024-01-15',
-    readTime: '8分钟',
-    category: '技术趋势',
-    tags: ['Web开发', '技术趋势', 'AI', '前端'],
-    slug: 'web-development-trends-2024',
-    featured: true,
-  },
-  {
-    id: '2',
-    title: '产品经理的数字化转型思考',
-    excerpt: '从传统产品到数字化产品的转变过程中，产品经理需要具备哪些新的思维和能力。',
-    content: '',
-    publishedAt: '2024-01-10',
-    readTime: '12分钟',
-    category: '产品思考',
-    tags: ['产品管理', '数字化转型', '职业发展'],
-    slug: 'product-manager-digital-transformation',
-    featured: true,
-  },
-  {
-    id: '3',
-    title: '用户体验设计的心理学原理',
-    excerpt: '深入分析用户行为背后的心理学原理，以及如何将这些原理应用到产品设计中。',
-    content: '',
-    publishedAt: '2024-01-05',
-    readTime: '10分钟',
-    category: '设计思考',
-    tags: ['UX设计', '心理学', '用户行为'],
-    slug: 'ux-design-psychology-principles',
-    featured: false,
-  },
-  {
-    id: '4',
-    title: 'React 18新特性深度解析',
-    excerpt: '详细分析React 18的并发特性、Suspense改进和新的Hooks，以及如何在实际项目中应用。',
-    content: '',
-    publishedAt: '2024-01-01',
-    readTime: '15分钟',
-    category: '技术分享',
-    tags: ['React', '前端框架', 'JavaScript'],
-    slug: 'react-18-features-deep-dive',
-    featured: false,
-  },
-  {
-    id: '5',
-    title: '微服务架构的实践与思考',
-    excerpt: '分享在大型项目中实施微服务架构的经验，包括服务拆分、数据一致性等关键问题。',
-    content: '',
-    publishedAt: '2023-12-25',
-    readTime: '18分钟',
-    category: '架构设计',
-    tags: ['微服务', '架构设计', '后端开发'],
-    slug: 'microservices-architecture-practice',
-    featured: false,
-  },
-  {
-    id: '6',
-    title: 'AI工具在开发工作流中的应用',
-    excerpt: '探索ChatGPT、GitHub Copilot等AI工具如何提升开发效率，以及最佳实践分享。',
-    content: '',
-    publishedAt: '2023-12-20',
-    readTime: '12分钟',
-    category: '工具分享',
-    tags: ['AI工具', '开发效率', 'ChatGPT'],
-    slug: 'ai-tools-in-development-workflow',
-    featured: false,
-  },
-]
-
 const categories = ['全部', '技术趋势', '产品思考', '设计思考', '技术分享', '架构设计', '工具分享']
 
 export default function BlogPage() {
+  const allPosts = getPosts().filter(post => post.status === 'published')
+  const blogPosts = allPosts.map(post => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    content: post.content,
+    publishedAt: post.publishedAt,
+    readTime: '5分钟', // 可以根据内容长度计算
+    category: '技术分享', // 可以根据标签或其他逻辑分类
+    tags: post.tags,
+    slug: post.slug,
+    featured: post.featured,
+  }))
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="section-padding">

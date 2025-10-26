@@ -1,6 +1,7 @@
 import { Github, ExternalLink, Star, GitFork, Calendar } from 'lucide-react'
 import { format } from 'date-fns'
 import { zhCN } from 'date-fns/locale'
+import { getProjects } from '@/lib/data'
 
 interface Project {
   id: string
@@ -16,85 +17,21 @@ interface Project {
   createdAt: string
 }
 
-const allProjects: Project[] = [
-  {
-    id: '1',
-    name: '智能数据分析平台',
-    description: '基于React和Python构建的数据可视化平台，支持多种数据源接入和实时分析。采用现代化的技术栈，提供直观的数据展示和交互体验。',
-    language: 'TypeScript',
-    stars: 42,
-    forks: 8,
-    topics: ['React', 'Python', 'Data Visualization', 'Machine Learning', 'D3.js'],
-    githubUrl: 'https://github.com/example/data-platform',
-    demoUrl: 'https://demo.example.com',
-    updatedAt: '2024-01-15',
-    createdAt: '2023-08-20',
-  },
-  {
-    id: '2',
-    name: '个人博客系统',
-    description: '使用Next.js和MDX构建的现代化博客系统，支持Markdown写作和SEO优化。具备响应式设计和暗色模式。',
-    language: 'JavaScript',
-    stars: 28,
-    forks: 5,
-    topics: ['Next.js', 'MDX', 'Blog', 'SEO', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/example/blog-system',
-    demoUrl: 'https://blog.example.com',
-    updatedAt: '2024-01-10',
-    createdAt: '2023-06-15',
-  },
-  {
-    id: '3',
-    name: '移动端电商应用',
-    description: 'React Native开发的跨平台电商应用，包含完整的购物车和支付功能。支持iOS和Android双平台。',
-    language: 'JavaScript',
-    stars: 35,
-    forks: 12,
-    topics: ['React Native', 'E-commerce', 'Mobile', 'Payment', 'Redux'],
-    githubUrl: 'https://github.com/example/ecommerce-app',
-    updatedAt: '2024-01-08',
-    createdAt: '2023-09-10',
-  },
-  {
-    id: '4',
-    name: 'AI聊天机器人',
-    description: '基于OpenAI API开发的智能聊天机器人，支持多轮对话和上下文理解。具备Web和移动端界面。',
-    language: 'Python',
-    stars: 56,
-    forks: 15,
-    topics: ['Python', 'OpenAI', 'Chatbot', 'AI', 'FastAPI'],
-    githubUrl: 'https://github.com/example/ai-chatbot',
-    demoUrl: 'https://chat.example.com',
-    updatedAt: '2024-01-12',
-    createdAt: '2023-11-01',
-  },
-  {
-    id: '5',
-    name: '任务管理工具',
-    description: '全栈任务管理应用，支持团队协作、项目跟踪和进度管理。采用微服务架构设计。',
-    language: 'TypeScript',
-    stars: 31,
-    forks: 7,
-    topics: ['Vue.js', 'Node.js', 'MongoDB', 'Microservices', 'Docker'],
-    githubUrl: 'https://github.com/example/task-manager',
-    updatedAt: '2024-01-05',
-    createdAt: '2023-07-20',
-  },
-  {
-    id: '6',
-    name: '区块链钱包',
-    description: '支持多种加密货币的区块链钱包应用，具备安全的私钥管理和交易功能。',
-    language: 'Rust',
-    stars: 89,
-    forks: 23,
-    topics: ['Rust', 'Blockchain', 'Cryptocurrency', 'Security', 'Web3'],
-    githubUrl: 'https://github.com/example/blockchain-wallet',
-    updatedAt: '2024-01-18',
-    createdAt: '2023-05-10',
-  },
-]
-
 export default function ProjectsPage() {
+  const allProjectsData = getProjects()
+  const allProjects = allProjectsData.map(project => ({
+    id: project.id,
+    name: project.title,
+    description: project.description,
+    language: project.technologies[0] || 'JavaScript',
+    stars: Math.floor(Math.random() * 100), // 模拟数据
+    forks: Math.floor(Math.random() * 20),
+    topics: project.technologies,
+    githubUrl: project.githubUrl || '#',
+    demoUrl: project.liveUrl,
+    updatedAt: project.updatedAt,
+    createdAt: project.createdAt,
+  }))
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="section-padding">
